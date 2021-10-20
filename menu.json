@@ -18,7 +18,8 @@
     "notes": "Specialty item of the restaurant, frequenty goes out of stock, seasonal item",
     "ranking": 1,
     "restaurantName": "Sample Resturant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "lemon chicken",
@@ -45,7 +46,8 @@
     "notes": "Lemons are fanstastic. Allergies to peanuts",
     "ranking": 2,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "kentucky fried chicken",
@@ -66,7 +68,8 @@
     "notes": "fried, spicy",
     "ranking": 3,
     "restaurantName": "Sample Resturant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "buffalo wild wings",
@@ -87,7 +90,8 @@
     "notes": "spicy",
     "ranking": 8,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "eggplant with fish sauce",
@@ -108,7 +112,8 @@
     "notes": "vegetarian",
     "ranking": 1,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "egg foo yung",
@@ -135,7 +140,8 @@
     "notes": "vegetarian",
     "ranking": 2,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "ceasar salad",
@@ -168,7 +174,8 @@
     "notes": "healthy",
     "ranking": 1,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "mediterranean salad",
@@ -207,7 +214,8 @@
     "notes": "healthy",
     "ranking": 3,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "ban mi",
@@ -240,7 +248,8 @@
     "notes": "korean",
     "ranking": 3,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "hot dog",
@@ -267,7 +276,8 @@
     "notes": "kids meal",
     "ranking": 6,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   },
   {
     "name": "steak",
@@ -288,6 +298,7 @@
     "notes": "good stuff",
     "ranking": 1,
     "restaurantName": "Sample Restaurant",
-    "restaurantId": 1
+    "restaurantId": 1,
+    "visible": true
   }
 ]
