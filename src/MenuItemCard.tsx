@@ -30,7 +30,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function App() {
+export default function MenuItemCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import MenuItemCard from './MenuItemCard'
 import './styles/index.css'
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render(<MenuItemCard />, document.querySelector('#MenuItemCard'));
 
