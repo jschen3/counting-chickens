@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.7",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@mui/icons-material": "5.2.5",
+    "@mui/material": "5.2.6",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,7 +20,7 @@
     "gridjs": "^5.0.2",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
-    "react": "^17.0.2",
+    "react": "17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^5.3.0",
@@ -30,7 +34,7 @@
     "lint": "eslint --report-unused-disable-directives --cache src/",
     "pretty": "prettier --write '{src,public}/**/*.{js,ts,tsx,json}' '{*,.*}.{yaml,yml,json,js,ts,tsx}'",
     "p": "pretty-quick",
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "test": "react-scripts test"
   },
   "workspaces": {
