@@ -6,6 +6,7 @@
     "@callstack/react-theme-provider": "^3.0.7",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
+    "@material/card": "13.0.0",
     "@mui/icons-material": "5.2.5",
     "@mui/material": "5.2.6",
     "@testing-library/jest-dom": "^5.11.4",
