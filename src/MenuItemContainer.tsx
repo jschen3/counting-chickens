@@ -20,24 +20,24 @@ export default class MenuItemContainer extends Component {
             allMenuItems: null,
         }
     }
-    
+
     getMenuItemData = () => {
-        const menuItems=[
+        const menuItems = [
             {
                 "visible": true,
                 "ingredients": [
-                {
-                "name": "chicken",
-                "ingredientId": 1,
-                "unit": "lb",
-                "qty": 0.5
-                },
-                {
-                "name": "lemons",
-                "ingredientId": 2,
-                "unit": "ea",
-                "qty": 1
-                }
+                    {
+                        "name": "chicken",
+                        "ingredientId": 1,
+                        "unit": "lb",
+                        "qty": 0.5
+                    },
+                    {
+                        "name": "lemons",
+                        "ingredientId": 2,
+                        "unit": "ea",
+                        "qty": 1
+                    }
                 ],
                 "name": "lemon chicken",
                 "restaurantId": "6f0e",
@@ -50,22 +50,22 @@ export default class MenuItemContainer extends Component {
                 "description": "Chicken breast seasoned with lemons.",
                 "price": 11.99,
                 "id": "995d"
-                },
-                {
+            },
+            {
                 "visible": true,
                 "ingredients": [
-                {
-                "name": "hot dog",
-                "ingredientId": 12,
-                "unit": "ea",
-                "qty": 1
-                },
-                {
-                "name": "bread",
-                "ingredientId": 9,
-                "unit": "bun",
-                "qty": 1
-                }
+                    {
+                        "name": "hot dog",
+                        "ingredientId": 12,
+                        "unit": "ea",
+                        "qty": 1
+                    },
+                    {
+                        "name": "bread",
+                        "ingredientId": 9,
+                        "unit": "bun",
+                        "qty": 1
+                    }
                 ],
                 "name": "hot dog",
                 "restaurantId": "6f0e",
@@ -78,16 +78,16 @@ export default class MenuItemContainer extends Component {
                 "description": "hot dog",
                 "price": 5.99,
                 "id": "3fa8"
-                },
-                {
+            },
+            {
                 "visible": true,
                 "ingredients": [
-                {
-                "name": "eggplant",
-                "ingredientId": "11",
-                "unit": "ea",
-                "qty": 3
-                }
+                    {
+                        "name": "eggplant",
+                        "ingredientId": "11",
+                        "unit": "ea",
+                        "qty": 3
+                    }
                 ],
                 "name": "eggplant with fish sauce",
                 "restaurantId": "6f0e",
@@ -100,17 +100,17 @@ export default class MenuItemContainer extends Component {
                 "description": "eggplant with fish sauce, soy sauce, sweet and savory",
                 "price": 10.99,
                 "id": "1231"
-                }
+            }
         ];
-        this.setState({allMenuItems: menuItems},()=>{
+        this.setState({ allMenuItems: menuItems }, () => {
             this.getMenuItemImages();
         });
     }
     getMenuItemImages = () => {
-        for (const menuItem of this.state.allMenuItems){
-            this.getImage(menuItem.imagePath).then(result =>{
+        for (const menuItem of this.state.allMenuItems) {
+            this.getImage(menuItem.imagePath).then(result => {
                 const base64Image = this.convertToBase64(result.Body)
-                menuItem.image=base64Image;
+                menuItem.image = base64Image;
             });
         }
     }
@@ -137,34 +137,34 @@ export default class MenuItemContainer extends Component {
         this.getMenuItemData();
     }
     render = () => {
-        if (this.state.allMenuItems!=null){
-        const cardsArray = this.state.allMenuItems.map(
-            (singleCard) => <Card
-                className="menu-item-card">
-                <CardHeader
-                  title={singleCard.name}
-                />
-                <CardMedia
-                  className="menu-item-card-media-image"
-                  component="img"
-                  height="100"
-                  src={`data:image/jpg;base64, ${singleCard.image}`}
-                  alt="Paella dish"
-                />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {singleCard.description}
-                  </Typography>
-                  <Typography variant="body2">{singleCard.price}</Typography>
-                </CardContent>
-              </Card>
+        if (this.state.allMenuItems != null) {
+            const cardsArray = this.state.allMenuItems.map(
+                (singleCard) => <Card
+                    className="menu-item-card">
+                    <CardHeader
+                        title={singleCard.name}
+                    />
+                    <CardMedia
+                        className="menu-item-card-media-image"
+                        component="img"
+                        height="100"
+                        src={`data:image/jpg;base64, ${singleCard.image}`}
+                        alt="Paella dish"
+                    />
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                            {singleCard.description}
+                        </Typography>
+                        <Typography variant="body2">{singleCard.price}</Typography>
+                    </CardContent>
+                </Card>
             );
-        return (<div className="menu-item-container">
-                    {cardsArray ? cardsArray:null}
-                </div>);
+            return (<div className="menu-item-container">
+                {cardsArray ? cardsArray : null}
+            </div>);
         }
-        else{
+        else {
             return <div></div>
-        }            
-    }    
+        }
+    }
 }
