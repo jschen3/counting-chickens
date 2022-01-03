@@ -18,8 +18,8 @@ interface IProps {
     allMenuItems: [MenuItem]
 }
 interface IState {
-    allMenuItems: [MenuItem]
-    images: []
+    allMenuItems: MenuItem[]
+    images: string[]
 }
 export default class MenuItemContainer extends Component<IProps, IState> {
     constructor(props: IProps) {
@@ -117,12 +117,16 @@ export default class MenuItemContainer extends Component<IProps, IState> {
         });
     }
     getMenuItemImages = () => {
-        for (let i = 0; i < this.state.allMenuItems.length; i += 1) {
-            const stateMenuItem = this.state.allMenuItems[i];
+        const allMenuItems = this.state.allMenuItems;
+        const images = this.state.images;
+        for (let i = 0; i < allMenuItems.length; i += 1) {
+            const stateMenuItem = allMenuItems[i];
             if (stateMenuItem.imagePath != null) {
                 this.getImage(stateMenuItem.imagePath).then(result => {
                     const base64Image = this.convertToBase64(result.Body);
-                    this.state.images.push(base64Image);
+                    const currentImages = Object.assign(images);
+                    currentImages.push(base64Image);
+                    this.setState(state => ({images:currentImages}));
                 });
             }
         }
@@ -150,36 +154,40 @@ export default class MenuItemContainer extends Component<IProps, IState> {
         this.getMenuItemData();
     }
     render = () => {
-        if (this.state.allMenuItems != null && this.state.allMenuItems.length > 0 && this.state.images != null && this.state.images.length >0) {
-            const cardsArray = this.state.allMenuItems.map(
-                (singleCard, index) => <Card
-                    className="menu-item-card">
-                    <CardHeader
-                        title={singleCard.name}
-                    />
-                    {this.state.images[index]!=null &&
-                    <CardMedia
-                        className="menu-item-card-media-image"
-                        component="img"
-                        height="100"
-                        src={`data:image/jpg;base64, ${this.state.images[index]}`}
-                        alt="Paella dish"
-                    />
-                    }
-                    <CardContent>
-                        <Typography variant="body2" color="text.secondary">
-                            {singleCard.description}
-                        </Typography>
-                        <Typography variant="body2">{singleCard.price}</Typography>
-                    </CardContent>
-                </Card>
-            );
+        const allMenuItems = this.state.allMenuItems;
+        const images = this.state.images;
+        if (allMenuItems != null && allMenuItems.length > 0 && images != null && images.length >0) {
+            const cardsArray = allMenuItems.map(
+                (singleCard, index) =>  
+                        (<React.Fragment>
+                            <Card className="menu-item-card">
+                                <CardHeader
+                                title={singleCard.name}
+                                />
+                            {images[index]!=null &&
+                            <CardMedia
+                                className="menu-item-card-media-image"
+                                component="img"
+                                height="100"
+                                src={`data:image/jpg;base64, ${images[index]}`}
+                                alt="Paella dish"
+                            />
+                            }
+                            <CardContent>
+                                <Typography variant="body2" color="text.secondary">
+                                    {singleCard.description}
+                                </Typography>
+                                <Typography variant="body2">{singleCard.price}</Typography>
+                            </CardContent>
+                        </Card>
+                        </React.Fragment>) 
+                );
             return (<div className="menu-item-container">
-                {cardsArray ? cardsArray : null}
+                {cardsArray} 
             </div>);
         }
         else {
-            return (<div></div>);
+            return (<div className="menu-item-container"></div>);
         }
     }
 }
