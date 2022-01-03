@@ -7,18 +7,28 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import AWS from 'aws-sdk';
+import { MenuItem } from './types/menu';
 dotenv.config();
 const AWS_ACCESS_KEY_ID = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
 const AWS_SECRET_ACCESS_KEY = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
 const AWS_S3_BUCKET = process.env.REACT_APP_AWS_S3_BUCKET;
 const AWS_S3_REGION = process.env.REACT_APP_AWS_S3_REGION;
 
-export default class MenuItemContainer extends Component {
-    constructor(props) {
+interface IProps {
+    allMenuItems: [MenuItem]
+}
+interface IState {
+    allMenuItems: [MenuItem]
+    images: []
+}
+export default class MenuItemContainer extends Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
         this.state = {
-            allMenuItems: null,
+            allMenuItems: [],
+            images: []
         }
+        //this.getMenuItemData.bind(this);
     }
 
     getMenuItemData = () => {
@@ -107,11 +117,14 @@ export default class MenuItemContainer extends Component {
         });
     }
     getMenuItemImages = () => {
-        for (const menuItem of this.state.allMenuItems) {
-            this.getImage(menuItem.imagePath).then(result => {
-                const base64Image = this.convertToBase64(result.Body)
-                menuItem.image = base64Image;
-            });
+        for (let i = 0; i < this.state.allMenuItems.length; i += 1) {
+            const stateMenuItem = this.state.allMenuItems[i];
+            if (stateMenuItem.imagePath != null) {
+                this.getImage(stateMenuItem.imagePath).then(result => {
+                    const base64Image = this.convertToBase64(result.Body);
+                    this.state.images.push(base64Image);
+                });
+            }
         }
     }
     convertToBase64 = (data) => {
@@ -129,7 +142,7 @@ export default class MenuItemContainer extends Component {
         const params = {
             Bucket: AWS_S3_BUCKET,
             Key: imagePath,
-            ResponseContentEncoding: 'image/png'
+            ResponseContentEncoding: 'image/jpg'
         };
         return s3.getObject(params).promise();
     }
@@ -137,20 +150,22 @@ export default class MenuItemContainer extends Component {
         this.getMenuItemData();
     }
     render = () => {
-        if (this.state.allMenuItems != null) {
+        if (this.state.allMenuItems != null && this.state.allMenuItems.length > 0 && this.state.images != null && this.state.images.length >0) {
             const cardsArray = this.state.allMenuItems.map(
-                (singleCard) => <Card
+                (singleCard, index) => <Card
                     className="menu-item-card">
                     <CardHeader
                         title={singleCard.name}
                     />
+                    {this.state.images[index]!=null &&
                     <CardMedia
                         className="menu-item-card-media-image"
                         component="img"
                         height="100"
-                        src={`data:image/jpg;base64, ${singleCard.image}`}
+                        src={`data:image/jpg;base64, ${this.state.images[index]}`}
                         alt="Paella dish"
                     />
+                    }
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
                             {singleCard.description}
@@ -164,7 +179,7 @@ export default class MenuItemContainer extends Component {
             </div>);
         }
         else {
-            return <div></div>
+            return (<div></div>);
         }
     }
 }
