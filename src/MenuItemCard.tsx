@@ -14,7 +14,7 @@ const AWS_S3_BUCKET = process.env.REACT_APP_AWS_S3_BUCKET;
 const AWS_S3_REGION = process.env.REACT_APP_AWS_S3_REGION;
 const singleCardInfo = {
   name: 'hot dog',
-  imagePath: 'hot dog.png',
+  imagePath: 'hot dog.jpg',
   id: '3fa8',
   description: 'hot dog',
   price: 5.99,
@@ -69,7 +69,7 @@ export default class MenuItemCard extends Component {
     const params = {
       Bucket: AWS_S3_BUCKET,
       Key: imagePath,
-      ResponseContentEncoding: 'image/png'
+      ResponseContentEncoding: 'image/jpg'
     };
     return s3.getObject(params).promise();
   }
@@ -85,7 +85,7 @@ export default class MenuItemCard extends Component {
           className="menu-item-card-media-image"
           component="img"
           height="100"
-          src={`data:image/png;base64, ${this.state.image}`}
+          src={`data:image/jpg;base64, ${this.state.image}`}
           alt="Paella dish"
         />
         <CardContent>
